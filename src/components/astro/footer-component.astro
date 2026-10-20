@@ -1,0 +1,75 @@
+---
+import { MessageSquare, BadgeCheck, MapPin, Phone, Mail } from "@lucide/astro";
+import data from "@/lib/data/vet-data-info.json";
+---
+
+<footer id="instalaciones" class="bg-mint-whisper text-ink">
+  <div class="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_1fr_1fr_1fr] md:px-8 lg:px-16">
+    <div>
+      <p class="flex items-center gap-2 text-lg font-bold">
+        <span class="grid size-7 place-items-center rounded-lg bg-brand text-white">
+          <svg viewBox="0 0 24 24" class="size-4" fill="currentColor" aria-hidden="true">
+            <circle cx="6.5" cy="8" r="2.3"></circle>
+            <circle cx="11.5" cy="5.5" r="2.3"></circle>
+            <circle cx="17" cy="7" r="2.3"></circle>
+            <circle cx="20" cy="11" r="2"></circle>
+            <path d="M13 10.5c-3.7 0-7.5 4.2-7.5 7.1 0 2 1.6 3 3.3 2.2 1.4-.7 2.6-.7 4.1 0 1.6.8 3.3-.2 3.3-2.2 0-2.9-1.5-7.1-3.2-7.1Z"></path>
+          </svg>
+        </span>
+        {data.nombre}
+      </p>
+      <p class="mt-3 text-[0.6875rem] leading-4 text-ink-muted">{data.slogan}</p>
+      <span class="mt-4 inline-flex items-center gap-1.5 rounded-full bg-mint-foam px-3 py-1 text-[0.625rem] font-semibold text-evergreen">
+        <BadgeCheck size="12" /> {data.colegiado}
+      </span>
+    </div>
+
+    <div>
+      <h3 class="text-sm font-semibold">Horario Asistencial</h3>
+      <dl class="mt-4 space-y-3 text-[0.6875rem] text-ink-muted">
+        {data.horarios.map((h) => (
+          <div class="flex justify-between gap-3">
+            <dt>{h.dia.replace(" & Festivos", "")}:</dt>
+            <dd>{h.hora}</dd>
+          </div>
+        ))}
+        <div class="flex justify-between gap-3 text-emergency">
+          <dt>Urgencias y Triaje:</dt>
+          <dd>24 Horas / 365 Días</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div>
+      <h3 class="text-sm font-semibold">Contacto y Ubicación</h3>
+      <ul class="mt-4 space-y-3 text-[0.6875rem] text-ink-muted">
+        <li class="flex items-start gap-2"><MapPin class="mt-0.5 shrink-0 text-brand" size="13" /> {data.contacto.direccionCorta}</li>
+        <li class="flex items-start gap-2"><Phone class="mt-0.5 shrink-0 text-brand" size="13" /> Centralita: {data.contacto.telefono}</li>
+        <li class="flex items-start gap-2"><Mail class="mt-0.5 shrink-0 text-brand" size="13" /> {data.contacto.email}</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-sm font-semibold">Atención Inmediata</h3>
+      <p class="mt-4 text-[0.6875rem] leading-4 text-ink-muted">
+        ¿Dudas rápidas sobre tu mascota o seguimiento postoperatorio? Escríbenos directamente por mensajería clínica.
+      </p>
+      <a
+        href="https://wa.me/34910888777"
+        class="mt-4 inline-flex h-10 w-full items-center justify-center gap-2 rounded-full bg-evergreen px-5 text-xs font-semibold text-white transition hover:bg-brand-hover"
+      >
+        <MessageSquare size="14" /> WhatsApp Clínica Directa
+      </a>
+    </div>
+  </div>
+
+  <div class="mx-auto flex max-w-7xl flex-col gap-2 border-t border-slate-200 px-4 py-5 text-[0.625rem] text-ink-muted sm:px-6 md:flex-row md:items-center md:justify-between md:px-8 lg:px-16">
+    <p>&copy; {new Date().getFullYear()} {data.nombre} Salud Animal S.L.P. Todos los derechos reservados.</p>
+    <p class="flex flex-wrap gap-4">
+      <a href="/aviso-legal" class="hover:text-ink">Aviso Legal</a>
+      <a href="/politica-privacidad" class="hover:text-ink">Política de Privacidad</a>
+      <a href="/cookies" class="hover:text-ink">Cookies</a>
+      <a href="/consentimiento-informado" class="hover:text-ink">Consentimiento Informado</a>
+    </p>
+  </div>
+</footer>

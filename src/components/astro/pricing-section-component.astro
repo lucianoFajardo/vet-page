@@ -1,0 +1,79 @@
+---
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { ShieldCheck, Check, Star, BadgeCheck } from "@lucide/astro";
+import PlanButton from "../react/plan-button-component";
+
+const vetDataJson = (await import('@/lib/data/vet-data-info.json'))
+const plan = vetDataJson.plans;
+---
+
+<section id="tarifas" class="bg-white shadow-green-600 shadow-2xl">
+  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:px-8 lg:px-16">
+    <div class="text-center">
+      <span class="inline-flex items-center gap-1.5 rounded-full bg-mint-foam px-3 py-1 text-[0.625rem] font-bold tracking-wider text-evergreen uppercase">
+        <BadgeCheck size="11" /> Sin sorpresas en el mostrador ni costes ocultos
+      </span>
+      <h2 class="mt-4 text-[1.75rem] leading-9 font-bold tracking-wider text-ink lg:text-[2.25rem] lg:leading-11">
+        Precios Claros y Transparentes
+      </h2>
+      <p class="mx-auto mt-2 max-w-2xl text-xs leading-5 text-ink-muted">
+        Elegir la mejor salud para tu animal debe ser sencillo. Todas nuestras tarifas incluyen IVA desglosado y atención veterinaria con tiempo real para escucharte.
+      </p>
+    </div>
+    <div class="mt-10 grid items-stretch gap-5 lg:grid-cols-3">
+      {plan.map((plan) => (
+        <Card className={`border-0 bg-white pb-6 ${plan.featured ? "border-t-4 border-t-brand shadow-surface-3 lg:-mt-3 lg:mb-3 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-200" : "shadow-surface-1 border-2"}`}>
+          <CardHeader>
+            <div class="flex items-center justify-between">
+              <span class="text-[0.625rem] font-semibold tracking-wider text-ink-muted uppercase">{plan.eyebrow}</span>
+              {plan.featured && (
+                <span class="inline-flex items-center gap-1 rounded-full bg-mint-foam px-2 py-0.5 text-[0.625rem] font-bold text-evergreen uppercase">
+                  <Star size="10" /> Más popular
+                </span>
+              )}
+            </div>
+            <CardTitle className="mt-1 text-xl font-semibold text-ink">{plan.name}</CardTitle>
+            <p class="text-[0.6875rem] leading-4 text-ink-muted">{plan.description}</p>
+          </CardHeader>
+          <CardContent className="flex flex-1 flex-col gap-4">
+            <div>
+              <p class="flex items-baseline gap-2">
+                <span class={`text-5xl font-extrabold tracking-tight ${plan.featured ? "text-brand" : "text-ink"}`}>{plan.price}</span>
+                {plan.oldPrice && <span class="text-xs text-ink-muted line-through">{plan.oldPrice}</span>}
+                {plan.unit && <span class="text-[0.6875rem] text-ink-muted">{plan.unit}</span>}
+                {plan.featured && <span class="rounded bg-mint-soft px-1.5 py-0.5 text-[0.625rem] font-bold text-evergreen">{plan.tag}</span>}
+              </p>
+              {plan.note && <p class="mt-2 text-[0.625rem] font-semibold text-ink">{plan.note}</p>}
+              {!plan.featured && <span class="mt-2 inline-block rounded bg-mint-soft px-1.5 py-0.5 text-[0.625rem] font-bold text-evergreen">{plan.tag}</span>}
+            </div>
+            <ul class="flex-1 space-y-2.5 text-[0.6875rem] text-ink">
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-2">
+                  <Check class="mt-0.5 shrink-0 text-brand" size="13" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            {/* Button para poder seleccionar el plan  */}
+            <PlanButton client:load label={plan.name} plan={{ featured: plan.featured, cta: plan.cta }} />
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+    <!-- Garantía de Claridad Médica -->
+    <div class="mt-8 flex flex-col gap-3 rounded-2xl bg-mint-soft p-5 text-evergreen sm:flex-row sm:items-center">
+      <span class="grid size-10 shrink-0 place-items-center rounded-full bg-brand text-white">
+        <ShieldCheck size="20" />
+      </span>
+      <div class="flex-1">
+        <p class="text-sm font-semibold">Garantía de Claridad Médica</p>
+        <p class="text-[0.6875rem] leading-4 text-ink-muted">
+          Elaboramos un presupuesto detallado previo antes de cualquier prueba complementaria, analítica, intervención o tratamiento farmacológico.
+        </p>
+      </div>
+      <p class="inline-flex items-center gap-1.5 text-[0.6875rem] font-semibold">
+        <BadgeCheck size="14" /> 100% Consentimiento informado
+      </p>
+    </div>
+  </div>
+</section>

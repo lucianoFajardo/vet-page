@@ -1,0 +1,92 @@
+---
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { MapPin, Phone, Clock, Siren, Navigation, Train, CircleParking, Moon, Calendar } from "@lucide/astro";
+import data from "@/lib/data/vet-data-info.json";
+
+const mapQuery = encodeURIComponent(`${data.contacto.direccion}, Chile`);
+const tel = (value: string) => value.replace(/\s/g, "");
+---
+
+<section id="contacto" class="bg-white">
+  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:px-8 lg:px-16">
+    <span class="inline-flex items-center gap-1.5 rounded-full bg-mint-foam px-3 py-1 text-[0.625rem] font-bold tracking-wider text-evergreen uppercase">
+      <MapPin size="10" /> Ubicación y disponibilidad
+    </span>
+    <h2 class="mt-4 text-[1.75rem] leading-9 font-bold tracking-[-0.02em] text-ink lg:text-[2.25rem] lg:leading-11">
+      Estamos en pleno centro de Santiago, a tu disposición
+    </h2>
+    <div class="mt-8 grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+      <Card className="border-0 shadow-surface-2">
+        <CardHeader>
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-[0.625rem] font-semibold tracking-wider text-ink-muted uppercase">Hospital Veterinario Central</p>
+              <CardTitle className="mt-1 text-xl font-semibold text-ink">C/ {data.contacto.direccion.replace("C/ ", "")}</CardTitle>
+              <p class="mt-1 text-xs text-ink-muted">{data.contacto.ciudad}</p>
+            </div>
+            <span class="rounded bg-mint-soft px-2 py-0.5 text-[0.625rem] font-bold text-evergreen">Acceso adaptado</span>
+          </div>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <iframe
+            title="Mapa de ubicación"
+            src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+            class="h-64 w-full rounded-2xl border-0"
+            loading="lazy"
+          ></iframe>
+          <div class="grid gap-3 text-[0.6875rem] text-ink-muted sm:grid-cols-2">
+            <p class="flex items-start gap-2"><Train class="shrink-0 text-brand" size="14" /> Ubicacion referencial </p>
+            <p class="flex items-start gap-2"><CircleParking class="shrink-0 text-brand" size="14" /> Acceso a cota cero sin escalones para transportines</p>
+          </div>
+          <div class="flex flex-wrap gap-3 pb-2">
+            <a href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener noreferrer">
+              <Button><Navigation size="14" /> Abrir en Google Maps</Button>
+            </a>
+            <a href={`tel:${tel(data.contacto.telefono)}`}>
+              <Button variant="secondary" className="bg-mint-whisper text-evergreen hover:bg-mint-foam"><Phone size="14" /> Llamar a Recepción</Button>
+            </a>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="border-0 shadow-surface-2">
+        <CardHeader>
+          <div class="flex items-start justify-between">
+            <div class="flex items-center gap-3">
+              <span class="grid size-10 place-items-center rounded-full bg-mint-foam text-evergreen"><Clock size="18" /></span>
+              <div>
+                <CardTitle className="text-base font-semibold text-ink">Horarios Clínicos</CardTitle>
+                <p class="text-[0.625rem] text-ink-muted">Atención continuada</p>
+              </div>
+            </div>
+            <span class="size-2 rounded-full bg-brand"></span>
+          </div>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-3">
+          {data.horarios.map((h, i) => (
+            <div class="flex items-center justify-between rounded-lg bg-mint-whisper px-3 py-2.5 text-xs text-ink">
+              <span class="flex items-center gap-2">
+                {i === 2 ? <Moon size="14" /> : <Calendar size="14" />} {h.dia}
+              </span>
+              <span class={`text-[0.6875rem] ${i === 0 ? "font-mono font-bold text-brand" : "font-mono text-ink-muted"} ${i === 2 ? "text-[0.625rem] uppercase" : ""}`}>{h.hora}</span>
+            </div>
+          ))}
+          <div class="rounded-xl bg-red-50 p-4">
+            <div class="flex items-center justify-between">
+              <p class="flex items-center gap-2 text-sm font-semibold text-emergency"><Siren size="14" /> Servicio de Urgencias</p>
+              <span class="rounded bg-emergency px-1.5 py-0.5 text-[0.625rem] font-bold text-white">365 DÍAS</span>
+            </div>
+            <p class="mt-2 text-[0.6875rem] leading-4 text-emergency">
+              Activo 24 Horas con presencia veterinaria inmediata. Recomendamos avisar telefónicamente para preparar box de estabilización.
+            </p>
+            <a href={`tel:${tel(data.contacto.urgencias)}`}>
+              <Button variant="emergency" className="mt-3 h-9 w-full text-xs"><Phone size="13" /> Línea Urgente: {data.contacto.urgencias}</Button>
+            </a>
+          </div>
+          <p class="text-center text-[0.6875rem] text-ink-muted">¿Quieres evitar esperas? Te asignamos franja exacta sin demora.</p>
+        </CardContent>
+      </Card>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,79 @@
+---
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Stethoscope, Syringe, SmilePlus, Microscope, Check, ArrowRight, Heart } from "@lucide/astro";
+
+const specialties = [
+  {
+    icon: Stethoscope,
+    title: "Consulta General & Preventiva",
+    description: "Revisiones integrales de peso, nutrición, ojos, oídos y ritmo cardíaco para mantenerlo sano en cada etapa de su vida.",
+    benefits: ["Exploración cardiorrespiratoria", "Control de masa corporal y dieta", "Chequeo dermatológico integral"],
+    cta: "Pedir consulta básica",
+  },
+  {
+    icon: Syringe,
+    title: "Vacunación y Microchip Oficial",
+    description: "Planes oficiales de vacunación (rabia, tetravalente, leucemia felina), pasaporte europeo y microchip legal homologado.",
+    benefits: ["Registro censal oficial inmediato", "Pasaporte para viajes internacionales", "Recordatorios automáticos por SMS"],
+    cta: "Ver planes de vacunas",
+  },
+  {
+    icon: SmilePlus,
+    title: "Odontología Veterinaria Avanzada",
+    description: "Limpieza dental por ultrasonidos, pulido y prevención de sarro para un aliento fresco y encías sanas sin dolor.",
+    benefits: ["Ultrasonidos y profilaxis atraumática", "Detección de enfermedad periodontal", "Sedación segura y analgesia continua"],
+    cta: "Valoración dental gratuita",
+  },
+  {
+    icon: Microscope,
+    title: "Quirófano & Diagnóstico Digital",
+    description: "Cirugía monitorizada con anestesia inhalatoria, radiografía digital directa de alta definición, ecografía y analítica en 15 min.",
+    benefits: ["Laboratorio analítico in situ (15 min)", "Rayos X digital y ecografía Doppler", "Monitorización multiparamétrica constante"],
+    cta: "Conocer el equipamiento",
+  },
+];
+---
+
+<section id="servicios" class="bg-white shadow-green-600 shadow-2xl">
+  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:px-8 lg:px-16">
+    <span class="inline-flex items-center gap-1.5 rounded-full bg-mint-foam px-3 py-1 text-[0.625rem] font-bold tracking-wider text-evergreen uppercase">
+      <Heart size="10" /> Especialidades médicas
+    </span>
+    <div class="mt-4 grid items-end gap-6 lg:grid-cols-[1.4fr_1fr]">
+      <h2 class="text-[1.75rem] leading-9 font-bold tracking-[-0.02em] text-ink lg:text-[2.25rem] lg:leading-11">
+        Cuidado integral avalado por veterinarios colegiados
+      </h2>
+      <p class="text-xs leading-5 text-ink-muted">
+        Diagnósticos precisos en tiempo récord respaldados por aparatología de última generación y protocolos respetuosos con su bienestar emocional.
+      </p>
+    </div>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {specialties.map(({ icon: Icon, title, description, benefits, cta }) => (
+        <Card className="border-0 bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-200">
+          <CardHeader>
+            <div class="grid size-11 place-items-center rounded-xl bg-mint-foam text-evergreen">
+              <Icon size="20" />
+            </div>
+            <CardTitle className="mt-3 text-base leading-5 font-semibold text-ink">{title}</CardTitle>
+            <p class="mt-1 text-xs leading-5 text-ink-muted">{description}</p>
+          </CardHeader>
+          <CardContent className="flex-1">
+            <ul class="space-y-3 text-xs leading-5 text-ink-muted">
+              {benefits.map((benefit) => (
+                <li class="flex items-start gap-2">
+                  <Check class="mt-0.5 shrink-0 text-brand" size="13" />
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+          <CardFooter className="border-0 bg-transparent pb-6">
+            <a href="#contacto" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline">
+              {cta} <ArrowRight size="12" />
+            </a>
+          </CardFooter>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

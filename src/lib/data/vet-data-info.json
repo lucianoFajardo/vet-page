@@ -1,0 +1,89 @@
+{
+  "nombre": "ClínicaVet",
+  "slogan": "Hospital y centro médico veterinario de referencia. Diagnóstico avanzado, cirugía especializada y cuidados integrales para animales de compañía.",
+  "colegiado": "Col. Oficial Veterinarios Nº 28/4921",
+  "location": {
+    "direccion": "C/ Gran Vía de la Salud 42",
+    "ciudad": "28013 Madrid (Zona Centro - Gran Vía / Chueca)",
+    "direccionCorta": "Paseo de la Salud Animal 42, 28001 Madrid"
+  },
+  "servicios": [
+    {
+      "titulo": "Consulta General",
+      "descripcion": "Revisión completa de salud para perros y gatos.",
+      "imagen": "/assets/images/consulta.jpg"
+    },
+    {
+      "titulo": "Vacunación y Desparasitación",
+      "descripcion": "Mantén al día el carnet de vacunación de tu mascota.",
+      "imagen": "/assets/images/vacuna.jpg"
+    }
+  ],
+  "plans": [
+    {
+      "eyebrow": "Atención puntual",
+      "name": "Consulta General",
+      "description": "Para revisiones rutinarias, dudas clínicas o malestar incipiente.",
+      "price": "$35.000",
+      "unit": "/ consulta",
+      "tag": "IVA incluido",
+      "features": [
+        "Exploración física exhaustiva (25 min)",
+        "Control de peso, temperatura y ritmo",
+        "Revisión otoscópica y bucal profunda",
+        "Pautas nutricionales personalizadas"
+      ],
+      "cta": "Reservar Consulta",
+      "featured": false
+    },
+    {
+      "eyebrow": "Plan preventivo anual",
+      "name": "Plan Anual Vacunas",
+      "description": "Protección completa 365 días con todas las inmunizaciones exigidas.",
+      "price": "$60.000",
+      "oldPrice": "$95.000",
+      "tag": "Ahorro incluido",
+      "note": "Suscripción anual fija con IVA",
+      "features": [
+        "Todas las vacunas anuales obligatorias",
+        "Rabia, Tetravalente o Trivalente felina",
+        "Revisión clínica semestral incluida",
+        "Desparasitación interna de amplio espectro",
+        "10% de descuento en tienda y farmacia"
+      ],
+      "cta": "Contratar Plan Anual",
+      "featured": true
+    },
+    {
+      "eyebrow": "Primer año de vida",
+      "name": "Cachorros & Kittens",
+      "description": "El mejor comienzo médico para los recién llegados al hogar.",
+      "price": "$110.000",
+      "unit": "/ programa completo",
+      "tag": "Todo incluido",
+      "features": [
+        "Pauta de 3 primovacunas esenciales",
+        "Protocolo de desparasitación mensual",
+        "Implantación de Microchip oficial",
+        "Pasaporte veterinario europeo oficial",
+        "Guía de socialización y bienvenida"
+      ],
+      "cta": "Elegir Plan Cachorro",
+      "featured": false
+    }
+  ],
+  "contacto": {
+    "telefono": "910 888 777",
+    "urgencias": "900 123 456",
+    "email": "consultas@clinicavet.es",
+    "direccion": "C/ Gran Vía de la Salud 42",
+    "ciudad": "28013 Madrid (Zona Centro - Gran Vía / Chueca)",
+    "direccionCorta": "Paseo de la Salud Animal 42, 28001 Madrid",
+    "horarios": "Lunes a Sábado de 9:00 a 20:30"
+  },
+  "horarios": [
+    { "dia": "Lunes a Viernes", "hora": "08:30 - 20:30" },
+    { "dia": "Sábados", "hora": "09:00 - 14:00" },
+    { "dia": "Domingos & Festivos", "hora": "Solo urgencias" }
+  ]
+}
