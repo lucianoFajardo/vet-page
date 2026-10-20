@@ -8,13 +8,16 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import petDog from "../../assets/pet-dog.png";
+import petCat from "../../assets/pet-cat.png";
+import medicalClinical from "../../assets/medical-clinical.png";
 
 const slides = [
   {
     badge: "Quirófano ",
     title: "Quirófano moderno y monitorización multiparamétrica",
     thumb: "Medicina Canina",
-    img: "/src/assets/pet-dog.png",
+    img: petDog,
     thumbDesc: "Revisión periódica",
     gradient: "from-emerald-200 to-emerald-800",
   },
@@ -22,7 +25,7 @@ const slides = [
     badge: "Medicina Felina",
     title: "Espacios tranquilos y libres de estrés para gatos",
     thumb: "Área Felina",
-    img: "/src/assets/pet-cat.png",
+    img: petCat,
     thumbDesc: "Atención sin estrés",
     gradient: "from-teal-100 to-emerald-700",
   },
@@ -30,7 +33,7 @@ const slides = [
     badge: "Cirugía Avanzada",
     title: "Cirugía avanzada con anestesia gaseosa segura",
     thumb: "Quirófano",
-    img: "/src/assets/medical-clinical.png",
+    img: medicalClinical,
     thumbDesc: "Cirugía avanzada",
     gradient: "from-slate-300 to-emerald-900",
   },
@@ -65,7 +68,7 @@ export default function CarouselComponent() {
                   className={`relative flex aspect-16/10 items-end bg-linear-to-b ${slide.gradient}`}
                 >
                   <img
-                    src={slide.img}
+                    src={slide.img.src}
                     alt={slide.title}
                     className="absolute inset-0 z-0 h-full w-full object-cover"
                   />
